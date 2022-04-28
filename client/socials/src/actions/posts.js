@@ -13,15 +13,16 @@ export const getPosts = () => async (dispatch) => {
     }
     
 }
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
     try{
         const {data} = await api.createPost(post);
+        navigate(`/postDetails/${data._id}`);
         dispatch({
             type: actions.create,
             payload: data
         })
     }catch(err){
-        console.log(err.messge);
+        console.log(err.message);
     }
 }
 export const updatePost = (id, post) => async (dispatch) => {
@@ -54,5 +55,19 @@ export const likePost = (id) => async (dispatch) => {
         })
     }catch(err){
         console.log(err);
+    }
+}
+
+export const commentPost = (value, id) => async( dispatch ) => {
+    try{
+       const {data} = await api.comment(value, id);
+       
+       dispatch({
+           type: actions.update, payload: data
+       })
+
+       return data.comments;
+    }catch(err){
+console.log(err);
     }
 }

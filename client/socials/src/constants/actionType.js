@@ -4,3 +4,4 @@ export const remove = "DELETE";
 export const get = 'FETCH_ALL';
 export const auth = "AUTH";
 export const logout = "LOGOUT";
+export const comment = "COMMENT";

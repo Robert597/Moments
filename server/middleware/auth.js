@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import decoding from 'jwt-decode'
+
 
 const auth = async (req, res, next) => {
     try{

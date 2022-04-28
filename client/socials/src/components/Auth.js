@@ -4,6 +4,7 @@ import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { signIn, signUp } from '../actions/auth';
 import { useNavigate } from "react-router-dom"
+import Navbar from './Navbar/Navbar';
 
 
 
@@ -37,16 +38,17 @@ const Auth = () => {
 
         try{
            await  dispatch({type: 'AUTH', data: {result, token}});
-           navigate('/');
+           navigate('/homepage/1');
         }catch(err){
 console.log(err);
         }
     }
     const googleFailure = (error) => {
-        console.log(error)
+        alert(error.message)
     }
   return (
     <div>
+         <Navbar/>
         <div className='authContainer'>
             <div className='authIcon'>
                 <MdLockOutline/>

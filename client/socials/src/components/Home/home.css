@@ -1,0 +1,85 @@
+.homeContainer{
+    width: 100vw;
+    min-height: 100vh;
+}
+.homeNavbar{
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+.homeContentPosts{
+    height: 100%;
+  margin-right: 350px;
+}
+.homeContentside{
+   position: fixed;
+   right: 0;
+   z-index: 100;
+   top: 6rem;
+   bottom: 0;
+   background-color: transparent;
+   width: 350px;
+   padding: 0 20px;
+   scroll-behavior: smooth;
+   overflow-y: auto;
+}
+.SearchContainer{
+    box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.cont,.tags{
+    position: relative;
+}
+.SearchContainer input{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+}
+.SearchContainer input:focus{
+    outline: none;
+}
+
+.tagsLabel, .SearchLabel{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: #c0c0c0;
+    font-family: neutral;
+    font-size: 12px;
+    transition: .5s ease-in all;
+    cursor: text;
+    background-color: #fff;
+}
+.SearchContainer input:focus ~ .tagsLabel,
+.SearchContainer input:focus ~ .SearchLabel
+{
+    top: -7px;
+   font-size: 10px;
+}
+
+.tags button{
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #3a6ea5;
+    font-family: neutral;
+    font-size: 16px;
+    color: #ebebeb;
+}
+.unable{
+    box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    border-radius: 5px;
+    background-color: #f7fff7;
+    padding: 10px;
+    font-family: neutral;
+    font-size: 18px;
+    text-align: center;
+}

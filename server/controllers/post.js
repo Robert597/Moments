@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import postMessage from "../Models/postMessage.js";
 export const getPosts = async (req, res) => {
    try{
-    const posts = await postMessage.find();
+    const posts = await postMessage.find().sort({_id: -1});
     res.status(200).json(posts);
    }catch (err){
        res.status(404).json({message: err.message});
@@ -52,4 +52,15 @@ post.likes = post.likes.filter((id) => id !== String(req.userId))
     }
 const updatedPost = await postMessage.findByIdAndUpdate(_id, post, {new: true});
      res.json(updatedPost); 
+}
+export const commentPost = async (req, res) => {
+    const { id } = req.params;
+    const { value } = req.body;
+
+    const post = await postMessage.findById(id);
+
+    post.comments.push(value);
+    await post.save();
+
+    res.json(post);
 }

@@ -1,13 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'neutral';
+  src: url(Fonts/neutral_face/NeutralFace.otf);
+}
+@font-face {
+  font-family: 'neutral1';
+  src: url(Fonts/neutral_face/NeutralFace-Bold.otf);
+}
+@font-face {
+  font-family: 'common';
+  src: url(Fonts/neue_haas_sv/folder/NHaasGroteskTXPro-55Rg.ttf);
+}
+@font-face {
+  font-family: 'commonmd';
+  src: url(Fonts/neue_haas_sv/folder/NHaasGroteskTXPro-65Md.ttf);
+}
+@font-face {
+  font-family: 'newYork';
+  src: url(Fonts/newyork/NewYork\ PERSONAL\ USE.otf);
+}
+/* 3a6ea5 c0c0c0 ebebeb*/
+*{
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: common 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  max-width: 100vw;
+  position: relative;
+  background-color: #ebebeb;
+  overflow-x: hidden;
 }
 
 code {
@@ -16,4 +45,8 @@ code {
 }
 .pagination__link--active{
   color: blue;
+}
+.appContainer{
+  height: 100vh;
+  width: 100vw;
 }
