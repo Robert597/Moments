@@ -16,6 +16,9 @@ connectDB();
 const PORT = process.env.PORT || 5000
 
 //bringing in our routes
+app.get('/', (req, res) => {
+    res.send("App is running");
+})
 app.use("/posts", router);
 app.use("/auth", authRoute);
 mongoose.connection.once("connected", () => {

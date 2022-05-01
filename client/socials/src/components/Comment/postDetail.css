@@ -31,9 +31,6 @@
     font-family: neutral;
     font-weight: bold;
     margin-bottom: 5px;
-    overflow: hidden;
-    height: 34px;
-    transform: translateY(0);
 }
 .detailscardtags{
     color: #c0c0c0;
