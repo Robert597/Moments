@@ -105,6 +105,12 @@
       .navTitle span{
         font-size: 24px;
       }
+      .navLogo{
+        width: 50px;
+        display: flex;
+        align-items: center;
+        margin-top: 6px;
+      }
       .navContainer{
           margin: 10px;
       }
