@@ -8,6 +8,7 @@
   margin: 10px 10px;
   position: relative;
   background-color: #fff;
+  flex-grow: 1;
 }
 .cardContainer{
     max-width: 100%;
@@ -40,6 +41,11 @@ height: 200px;
     font-size: 16px;
     padding: 10px 15px;
     font-weight: bold;
+    white-space: pre-wrap;      /* Webkit */    
+    white-space: -moz-pre-wrap; /* Firefox */     
+    white-space: -pre-wrap;     /* Opera <7 */    
+    white-space: -o-pre-wrap;   /* Opera 7 */     
+    word-wrap: break-word;   
 }
 .cardTitle{
     font-family: neutral1;
@@ -124,13 +130,25 @@ height: 200px;
         width: 300px;
     }
 }
-@media  all and (max-width: 799px){
+@media  all and (max-width: 680px){
     .postContainer{
         width: 250px;
     }
 }
-@media  all and (max-width: 600px){
+
+
+@media  all and (max-width: 590px){
     .postContainer{
-        width: 350px;
+       width: 350px;
+    }
+}
+@media  all and (max-width: 450px){
+    .postContainer{
+       width: 300px;
+    }
+}
+@media  all and (max-width: 390px){
+    .postContainer{
+        max-width: 300px;
     }
 }

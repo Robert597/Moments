@@ -1,0 +1,127 @@
+.mainAuthContainer{
+    width: 100vw;
+    height: 100vh;
+}
+.authFlexContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+.authContainer{
+    width: 300px;
+    box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px;
+}
+.authIcon{
+    width: 40px;
+    height: 40px;
+  margin: 10px auto;
+    background-color: #d62828;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.authContainer h6{
+    font-family: neutral;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+form{
+    padding: 15px 0;
+}
+.inputContainer, .inputPasswordContainer{
+    position: relative;
+}
+.inputContainer input, .inputPasswordContainer input{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+}
+.inputContainer input:focus,  .inputPasswordContainer input:focus{
+    outline: none;
+}
+.inputContainer input:focus ~ .authLabel,  .inputPasswordContainer input:focus ~ .authLabel,
+.inputContainer input:not(:placeholder-shown) ~ .authLabel,  .inputPasswordContainer input:not(:placeholder-shown) ~ .authLabel{
+    top: -7px;
+    font-size: 10px;
+}
+.authLabel{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: #c0c0c0;
+    font-family: neutral;
+    font-size: 12px;
+    transition: .5s ease-in all;
+    cursor: text;
+    background-color: #fff;
+}
+.revealPassword{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    cursor: pointer;
+}
+.loaderContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.loader3fill{
+    color: rgb(16, 230, 16);
+    font-size: 24px;
+    z-index: 100;
+    opacity: 0;
+}
+.errorM{
+    color: #d62828;
+    font-family: neutral;
+    font-size: 14px;
+    text-align: center;
+}
+.authBtn{
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #3a6ea5;
+    font-family: neutral;
+    font-size: 16px;
+    color: #ebebeb;
+    margin-bottom: 10px;
+}
+.googleAuthBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #3a6ea5;
+    font-family: neutral;
+    font-size: 14px;
+    color: #ebebeb;
+    margin-bottom: 10px;
+}
+.googleIcon{
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.authAskBtn{
+    font-family: newyork;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: right;
+    font-weight: bold;
+    width: 100%;
+}

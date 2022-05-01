@@ -9,11 +9,12 @@ import { likePost } from '../../actions/posts';
 import { Link, useNavigate } from 'react-router-dom';
 import "./post.css";
 
-const Post = ({ post }) => {
+
+const Post = ({ post, setShow }) => {
+   
     const dispatch = useDispatch();
 const user = JSON.parse(localStorage.getItem('profile'));
 const[likes, setLikes] = useState(post?.likes);
-const [like, setLike] = useState(false);
 const userId = user?.result?.googleId || user?.result?._id;
 const handleLike = () => {
     dispatch(likePost(post._id))
@@ -23,6 +24,9 @@ if( likes.find((like) => like ===  userId)){
     setLikes([...likes, userId]);
 }
 }
+
+
+
 const Navigate = useNavigate();
     const Like = () => {
         if(likes.length > 0){
@@ -85,7 +89,9 @@ const Navigate = useNavigate();
         {
                 (user?.result?.googleId === post?.creator || user?.result?._id === post.creator) && (
                     <div >
-            <AiOutlineMore className='cardicon' onClick={() => { dispatch(id(post._id))}}/>
+            <AiOutlineMore className='cardicon' onClick={() => { dispatch(id(post._id));
+            setShow(true);
+            }}/>
             </div>
                 )
             }

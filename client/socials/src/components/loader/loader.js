@@ -3,13 +3,14 @@ import gsap from 'gsap';
 import {useNavigate} from  'react-router-dom';
 import "./loader.css";
 
+
 const Loader = () => {
     let id;
     let width = 1;
     const Navigate = useNavigate();
     const tl = gsap.timeline();
     const tl1 = gsap.timeline({paused: true, onComplete: () => {
-        Navigate("/homepage/1")
+        Navigate("/homepage/0")
     }}); 
 
     let text = useRef(null);
@@ -47,13 +48,13 @@ const Loader = () => {
         })
         var bar = document.querySelector("#bar-confirm");
         const move = () => {
-            id = setInterval(frame, 50);
+            id = setInterval(frame, 100);
         }
        
         const frame = () => {
             if(width >= 100){
                 clearInterval(id);
-                tl1.play()
+               tl1.play()
             }else{
                 width++;
                 bar.style.width = width + '%';
@@ -85,8 +86,6 @@ const Loader = () => {
      <p>Robert Oluwaseun</p>
    </div>
    </div>
-  
-
   </div>
   </>
   )

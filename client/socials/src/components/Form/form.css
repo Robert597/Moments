@@ -5,6 +5,7 @@
     border-radius: 5px;
     background-color: #fff;
     padding: 10px;
+    margin-bottom: 20px;
  }
  .postFormMessage textarea{
      max-height: 80px;
@@ -36,12 +37,13 @@
     font-size: 12px;
     transition: .5s ease-in all;
     cursor: text;
-    background-color: #f7fff7;
+    background-color: #fff;
  }
  .postFormContainer input:focus, .postFormMessage textarea:focus{
      outline: none;
  }
- .postFormContainer input:focus ~  .postLabel, .postFormMessage textarea:focus ~ .postLabel{
+ .postFormContainer input:focus ~  .postLabel, .postFormMessage textarea:focus ~ .postLabel, .postFormContainer input:not(:placeholder-shown) ~ .postLabel, 
+ .postFormMessage textarea:not(:placeholder-shown) ~ .postLabel{
     top: -7px;
     font-size: 10px;
  }
@@ -52,6 +54,7 @@
      bottom: 20px;
      right: 10px;
      z-index: 100;
+     opacity: 0;
  }
  .postSubmitBtn, .postClearBtn{
     width: 100%;
@@ -65,3 +68,9 @@
  .postClearBtn{
      background-color: #d62828;
  }
+.postError{
+   color: #d62828;
+   font-family: neutral;
+   font-size: 14px;
+   text-align: center;
+}

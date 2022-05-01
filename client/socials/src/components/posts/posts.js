@@ -1,14 +1,15 @@
-import React, { useState, useContext, useEffect} from 'react';
+import React, { useState,  useEffect} from 'react';
 import Post from './post';
 import Pagination from './pagination';
-import DataContext from '../../context/datacontext';
+import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import "./post.css"
 
-const Posts = () => {
+
+const Posts = ({setShow}) => {
   const {page} = useParams();
   const[currentPage, setCurrentPage] = useState(Number(page));
-  const {filterData: data} = useContext(DataContext);
+  const data = useSelector((state) => state.posts);
  
   const PER_PAGE = 8;
 const navigate = useNavigate();
@@ -28,18 +29,18 @@ const navigate = useNavigate();
 
 
 const posts =  data.slice(offset, offset + PER_PAGE)
-
+console.log(posts);
 const pageCount = Math.ceil(data.length / PER_PAGE);
     
   return (
-  !posts.length ? <div>No posts</div> : (
     <>
     <div className='mainPostsContainer' >
       {
         posts.map((post, i) => {
           return (
             <div key={i}>
-             <Post post={post}/>
+             <Post post={post}
+             setShow = {setShow}/>
               </div>
           )
         })
@@ -51,7 +52,7 @@ const pageCount = Math.ceil(data.length / PER_PAGE);
              page={Number(page)}/>
     </>
   )
-  )
+
 }
 
 export default Posts;

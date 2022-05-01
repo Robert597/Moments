@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
-import Logo from "../../images/logo.png"
-import {FaBars} from "react-icons/fa"
+import Logo from "../../logo.png"
 import gsap from 'gsap';
 import "./Navbar.css";
+import DataContext from '../../context/datacontext';
 
 const Navbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const {user, setUser} = useContext(DataContext);
     const [show, setShow] = useState(false);
     const logout = () => {
         dispatch({type: "LOGOUT"});
 
-        navigate('/homepage/1');
+        navigate('/homepage/0');
         setUser(null);
+        setShow(false);
     }
 const location = useLocation();
     useEffect(() => {
@@ -52,7 +53,7 @@ useEffect(() => {
      
      <div className="navLogoContainer">
          <div>
-        <Link to="/homepage/1" className='navTitle'><span>M</span>OMENTS</Link></div>
+        <Link to="/homepage/0" className='navTitle'><span>M</span>OMENTS</Link></div>
         <div className='navLogo'>
         <img src={Logo} alt="logoImage"/>
         </div>

@@ -2,15 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, Link, useNavigate} from 'react-router-dom'
 import PostDetail from './postDetailComponent';
-import DataContext from '../context/datacontext';
-import Navbar from './Navbar/Navbar';
+import DataContext from '../../context/datacontext';
+import Navbar from '../Navbar/Navbar';
+import "./postDetail.css";
+import Loading from '../rotateLoader/loading';
 
 
 
 const PostDetails = () => {
 const data = useSelector(state => state.posts);
-console.log(data);
-const { handleTagSearch } = useContext(DataContext);
+const { handleRecommendedTagSearch } = useContext(DataContext);
 const {id} = useParams();
 const [post, setPost] = useState([]);
 const [recommended, setRecommended] = useState([]);
@@ -32,46 +33,59 @@ useEffect(() => {
 useEffect(() => {
 
  if(!loading && post){
-   handleTagSearch(post.tags.join(" "), setRecommended);
+   handleRecommendedTagSearch(post.tags.join(" "), setRecommended);
  }
-  }, [post, loading, handleTagSearch]);
+  }, [post, loading, handleRecommendedTagSearch]);
 
 const recommendedPosts = recommended.filter(({_id}) => _id !== post._id);
 
-const navigate = useNavigate();
+
+
+if(loading) return (
+    <Loading/>
+);
+
   return (
-    <div>
+    <div className='mainPostDetailContainer' >
+        <div className='mainPostDetailHeader'>
          <Navbar/>
-        {loading && (
-            <div>Loading...</div>
-        )}
+         </div>
+<div className='mainPostDetailContent'>
+
+
+        <div className='mainPostDetailSection'>
         {
             !loading && (
                 <>
-                <button onClick={() => navigate(-1)}>Go Back</button>
                <PostDetail post={post}/>
-               {recommendedPosts.length > 0 && (
-                   <div >
+               </>
+               )}
+        </div>
+        
+<div className='mainPostReccommendedSection'>
+        {
+            !loading && (
+                   <div className='recommendedSection'>
                        <h5>You might also like:</h5>
-                       <div className="flex w-screen">
+                       <div className="recommendedPostsContainer">
                            {
                                recommendedPosts.map((post, i) => (
-             <Link  to={`/postDetails/${post?._id}`} key={i}>
+             <Link  to={`/postDetails/${post?._id}`} className="recommendedPostContainer " key={i}>
                     
-            <div className='cardTitle'>
+            <div className='cardtitle'>
                 <h1 className='title'>{post?.title}</h1>
             </div> 
-            <div className='cardCreator'>
-                <h1 className='creator'>{post?.name}</h1>
+            <div className='cardcreator'>
+                <h1 className=''>{post?.name}</h1>
             </div>
-            <div className='cardContent'>
+            <div className='cardcontent'>
            <p>{post?.message}</p>
             </div>
-            <div className='like'>
+            <div className='detaillike'>
                 <h1>{`Likes: ${post?.likes.length}`}</h1>
             </div>
-            <div className='cardMedia'>
-                <img src={post?.selectedFile} alt="post media" width='500' height='200'/>
+            <div className='cardmedia'>
+                <img src={post?.selectedFile} alt="post media"/>
             </div>
             </Link>
                                    
@@ -82,9 +96,8 @@ const navigate = useNavigate();
                        </div>
                    </div>
  )}
-               </>
-            )
-        }
+         </div>
+         </div>
     </div>
   )
 }

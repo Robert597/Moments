@@ -11,18 +11,23 @@
 .homeContentPosts{
     height: 100%;
   margin-right: 350px;
+  padding: 0 10px;
+  transition: .5s all ease-in-out;
 }
 .homeContentside{
    position: fixed;
    right: 0;
    z-index: 100;
    top: 6rem;
-   bottom: 0;
+   bottom: 2rem;
    background-color: transparent;
    width: 350px;
    padding: 0 20px;
    scroll-behavior: smooth;
    overflow-y: auto;
+   display: flex;
+   flex-direction: column;
+   transition: .5s all ease-in-out;
 }
 .SearchContainer{
     box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
@@ -63,6 +68,10 @@
     top: -7px;
    font-size: 10px;
 }
+.SearchContainer input:not(:placeholder-shown) ~.SearchLabel, .SearchContainer input:not(:placeholder-shown) ~.tagsLabel{
+    top: -7px;
+   font-size: 10px;
+}
 
 .tags button{
     width: 100%;
@@ -77,9 +86,75 @@
     -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
     -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
     border-radius: 5px;
-    background-color: #f7fff7;
+    background-color: #fff;
     padding: 10px;
     font-family: neutral;
     font-size: 18px;
     text-align: center;
+}
+.revealIcon{
+   display: none;
+   padding-bottom: 10px;
+   transition: 1s ease-in all;
+   margin-top: auto;
+}
+.contentDissapear{
+    width: 100%;
+    transition: .5s ease-in all;
+}
+.navIconContainer{
+    display: none;
+    width: 100%;
+}
+@media all and (max-width: 1009px){
+   .hide .homeContentside{
+        width: 50px;
+        box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+        -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+        -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+        padding: 20px 0;
+        background-color: #ebebeb;
+        margin-right: 10px;
+        border-radius: 5px;
+     }
+     .show .homeContentside{
+        box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+        -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+        -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+        background-color: #ebebeb;
+        padding: 20px;
+     }
+     .hide .homeContentPosts{
+         margin-right: 50px;
+         padding: 0;
+         overflow-x: hidden;
+     }
+    .hide .navIconContainer{
+         display: block;
+         padding: 50px 0;
+     }
+     .hide .revealIcon, .hide .searchIconContainer, .hide .addIconContainer{
+       width: 100%;
+       display: flex;
+       justify-content: center;
+        color: #3a6ea5;
+        cursor: pointer;
+        z-index: 200;
+        font-size: 30px;
+    }
+    .show .revealIcon{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+         cursor: pointer;
+         z-index: 200;
+         font-size: 30px;
+         color: #3a6ea5;
+    }
+    .hide .searchIconContainer, .hide .addIconContainer{
+        margin-bottom: 20px;
+    }
+    .hide .contentDissapear{
+       display: none;
+    }
 }

@@ -1,0 +1,302 @@
+.postDetailContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 20px;
+    background-color: transparent
+}
+.detailimage{
+    width: 40%;
+    height: 400px;
+    overflow-x: auto;
+    padding: 20px;
+    overflow: hidden;
+}
+.detailimage img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.detailContent{
+    width: 60%;
+    height: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #c0c0c0;
+    overflow: hidden;
+}
+.detailstitle{
+    font-size: 24px;
+    text-transform: capitalize;
+    font-family: neutral;
+    font-weight: bold;
+    margin-bottom: 5px;
+    overflow: hidden;
+    height: 34px;
+    transform: translateY(0);
+}
+.detailscardtags{
+    color: #c0c0c0;
+    font-family: newYork;
+    font-size: 16px;
+    overflow: hidden;
+}
+.detailscardContent{
+    font-family: neutral;
+    font-size: 16px;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.detailscreator{
+    display: inline;
+    font-family: neutral;
+    font-size: 16px;
+    overflow: hidden;
+}
+.detailscreator span{
+    display: inline;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.detailscardMoment{
+    font-family: newYork;
+    font-size: 16px;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.commentContainer{
+    display: flex;
+    padding: 20px;
+    width: 100%;
+}
+.commentTop h1{
+font-family: neutral;
+font-size: 20px;
+font-weight: bold;
+text-transform: capitalize;
+}
+.commentTop{
+    width: 40%;
+    height: 100%;
+}
+.containingComments{
+    padding: 10px 20px;
+    height: 100px;
+    overflow-y: auto;
+}
+.commentbox h5{
+    font-family: neutral;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.commentTop p{
+    font-family: common;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.commentBox{
+width: 60%;
+padding: 0 15px;
+}
+.commentbox{
+width: 100%;
+}
+.commentTextArea{
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding:  20px;
+    margin: 15px 0;
+    position: relative;
+}
+.commentTextArea textarea{
+    height: 80px;
+    max-height: 100px;
+    width: 100%;
+}
+.commentLabel{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: #c0c0c0;
+    font-family: neutral;
+    font-size: 12px;
+    transition: .5s ease-in all;
+    cursor: text;
+    background-color: #fff;
+}
+.commentTextArea textarea:focus{
+    outline: none;
+}
+.commentTextArea textarea:focus ~ .commentLabel, 
+.commentTextArea textarea:not(:placeholder-shown) ~ .commentLabel{
+    top: -7px;
+    font-size: 10px;
+ }
+ .loader1Icon{
+     color: rgb(16, 230, 16);
+     font-size: 24px;
+     position: absolute;
+     bottom: 20px;
+     right: 10px;
+     z-index: 100;
+     opacity: 0;
+ }
+ .commentbox button{
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #ebebeb;
+    font-family: neutral;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    cursor: pointer;
+ }
+ .mainPostDetailContainer{
+     min-height: 100vh;
+     width: 100vw;
+ }
+ .mainPostDetailHeader{
+     position: sticky;
+     top: 0;
+     z-index: 500;
+ }
+ .mainPostDetailContent{
+     background-color: #fff;
+     margin: 20px;
+     box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+     -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+     -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+     border-radius: 20px;
+ }
+ .mainPostReccommendedSection{
+     width: 100%;
+     padding: 10px 20px;
+ }
+ .recommendedSection h5{
+     font-family: neutral;
+     font-weight: bold;
+     font-size: 18px;
+     padding-bottom: 10px;
+     border-bottom: 1px solid #e0e0e0;
+ }
+ .recommendedPostsContainer{
+     width: 100%;
+     display: flex;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+     padding: 20px;
+ }
+ .recommendedPostContainer{
+    width: 300px;
+    min-height: 400px;
+   box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+  -webkit-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+  -moz-box-shadow: -5px 4px 8px 0px rgba(0,0,0,0.28);
+  border-radius: 10px;
+  margin: 10px 10px;
+  position: relative;
+  background-color: #fff;
+  flex-grow: 1;
+  padding:  20px;
+ }
+ .cardtitle{
+    font-family: neutral1;
+    font-size: 24px;
+    color: #000;
+    padding: 10px 0;
+ }
+ .cardcreator h1{
+    font-size: 16px;
+    font-family: newYork;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+ }
+
+ .cardcontent{
+font-family: neutral;
+font-size: 18px;
+text-transform: capitalize;
+margin-bottom: 10px;
+ }
+ .detaillike{
+     font-family: neutral;
+     font-size: 18px;
+     margin-bottom: 10px;
+ }
+ .cardmedia{
+     width: 100%;
+     height: 300px;
+     max-height: 400px;
+ }
+ .cardmedia img{
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     border-radius: 10px;
+ }
+ @media all and (max-width: 1000px){
+    .detailimage{
+        width: 50%;
+    }
+    .detailContent{
+        width: 50%;
+    }
+    .commentContainer{
+        display: flex;
+        padding: 20px;
+        width: 100%;
+        flex-direction: column;
+    }
+    .commentTop{
+        width: 100%;
+    }
+    .commentBox{
+        width: 100%;
+    }
+    .commentContainer h5{
+        display: none;
+    }
+    .commentTextArea textarea{
+        height: 20px;
+    }
+ }
+ @media  screen and (max-width: 780px){
+     .postDetailContainer{
+         flex-direction: column;
+     }
+     .detailimage{
+        width: 100%;
+        height: 400px;
+        overflow-x: auto;
+        padding: 20px;
+    }
+    .detailContent{
+        width: 100%;
+    }
+    .detailstitle{
+        text-align: center;
+    }
+ }
+ @media all and (max-width: 450px) {
+    .detailimage{
+        padding: 20px 0;
+    }
+    .detailContent{
+        padding: 20px 0px;
+    }
+    .recommendedPostsContainer{
+        padding: 20px 0;
+    }
+    .commentTextArea{
+        padding:  20px 0;
+    }
+    .commentContainer{
+        padding: 20px 0;
+    }
+ }
+ @media all and (max-width: 390px){
+    .mainPostDetailContent{
+        margin: 10px;
+    }
+ }
