@@ -32,8 +32,8 @@ body{
   }
   #loader-text{
     position: absolute;
-    right: 40px;
-    bottom: 40px;
+    right: 0px;
+    bottom: 0px;
     padding: 40px;
     transform: translate(-50% -50%);
     text-align: center;
@@ -68,5 +68,12 @@ body{
     transform: translateY(-110%);
     color: transparent;
     -webkit-text-stroke: 1px #d9d9d9;
+  }
+  @media all and (max-width: 760px){
+    #loader-text{
+      position: absolute;
+      right: 10px;
+      bottom: 50px;
+    }
   }
  

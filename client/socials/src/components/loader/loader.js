@@ -68,7 +68,7 @@ const Loader = () => {
     }, [])
     
   return (
-      <>
+  
     <div id="preloader">
     
     <h1 className="loader-text">0%</h1>
@@ -90,7 +90,7 @@ const Loader = () => {
    </div>
    </div>
   </div>
-  </>
+ 
   )
 }
 
