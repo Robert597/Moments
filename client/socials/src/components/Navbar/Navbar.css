@@ -100,7 +100,7 @@
   }
   @media all and (max-width: 420px){
     .navTitle{
-        font-size: 16px;
+        font-size: 20px;
       }
       .navTitle span{
         font-size: 24px;
@@ -109,7 +109,7 @@
         width: 50px;
         display: flex;
         align-items: center;
-        margin-top: 6px;
+        margin-top: 5px;
       }
       .navContainer{
           margin: 10px;
