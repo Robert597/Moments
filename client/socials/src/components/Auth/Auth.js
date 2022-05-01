@@ -70,7 +70,7 @@ console.log(err);
         }
     }
     const googleFailure = (error) => {
-        alert(error.message)
+        console.log(error.message);
     }
   return (
     <div className='mainAuthContainer'>
