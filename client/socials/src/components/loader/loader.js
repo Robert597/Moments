@@ -45,6 +45,9 @@ const Loader = () => {
         .to("#preloader", {
             duration: .8,
             width: "0%"
+        }).to('body', {
+            overflow: "auto",
+            duration: .5
         })
         var bar = document.querySelector("#bar-confirm");
         const move = () => {
