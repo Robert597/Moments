@@ -35,6 +35,11 @@ const Auth = () => {
         });
         tl.play();
     }else{
+        gsap.to(".loader3fill", {
+            autoAlpha: 0,
+            ease: "power2.inOut",
+            duration: .5
+        });
         tl.pause();
     }
     }, [authLoader])
@@ -61,8 +66,7 @@ const Auth = () => {
     const googleSuccess = async (res) => {
         const result = res?.profileObj;
         const token = res?.tokenId
-
-        try{
+ try{
            await  dispatch({type: 'AUTH', data: {result, token}});
            navigate('/homepage/0');
         }catch(err){

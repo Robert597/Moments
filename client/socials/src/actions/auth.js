@@ -25,7 +25,6 @@ export const signUp = (formData, navigate, errorMessage, errorState, loader) => 
       loader(false)
         errorState(true);
         errorMessage(err.response.data.message)
-        console.log(err.response.data.message);
     }finally{
         loader(false);
     }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext}  from 'react';
+import React, { useState, useContext}  from 'react';
 import Form from '../Form/form';
 import Posts from '../posts/posts';
 import Search from '../Search/search';
@@ -8,15 +8,17 @@ import DataContext from "../../context/datacontext"
 import {AiOutlineArrowLeft
 ,  AiOutlineSearch, AiOutlinePlus, AiOutlineArrowRight} from "react-icons/ai";
 import Loading from '../rotateLoader/loading';
-
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const[show, setShow] = useState(false);
   const {loading, getError,  GetErrorMessage} = useContext(DataContext);
-
+let navigate = useNavigate();
   
   if(loading) return (<Loading/>)
- if(getError) return (<div className='errorCont'><p>{GetErrorMessage}</p></div>)
+ if(getError) return (<div className='errorCont'><p>{GetErrorMessage}</p>
+ <button onClick={() => navigate(0)}>Reload</button>
+ </div>)
 
  return ( 
    !loading && (
