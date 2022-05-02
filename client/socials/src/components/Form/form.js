@@ -63,8 +63,7 @@ const Form = ({setShow}) => {
                 await dispatch(updatePost(currentID, {...postData, name: user?.result?.name}));
                 setShow(false);
                 clear();
-            }
-            else if(postData.selectedFile){
+            }else if(postData.selectedFile){
             await dispatch(createPost({...postData, name: user?.result?.name}, navigate));
             clear();
             }else{
@@ -72,7 +71,6 @@ const Form = ({setShow}) => {
             }
     
         }catch(err){
-           
             setFormLoader(false);
             setIsError(true);
             setPostError(err.response.data.message);

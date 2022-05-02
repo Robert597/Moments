@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const API = Axios.create({ baseURL: 'https://moment-server-production.up.railway.app' });
+const API = Axios.create({ baseURL: 'https://memory-server2.herokuapp.com' });
 
 API.interceptors.request.use((req) => {
     if(localStorage.getItem('profile')){
