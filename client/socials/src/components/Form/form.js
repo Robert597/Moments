@@ -10,7 +10,7 @@ import "./form.css";
 import gsap from 'gsap';
 
 
-const Form = () => {
+const Form = ({setShow}) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const currentID = useSelector(state => state.id);
     const post = useSelector(state => currentID ? state.posts.find((p) => p._id === currentID) : null);
@@ -41,6 +41,11 @@ const Form = () => {
         tl.play();
     }else{
         tl.pause();
+        gsap.to(".loaderIcon", {
+            autoAlpha: 0,
+            ease: "power2.inOut",
+            duration: .5
+        });
     }
     }, [formLoader])
     
@@ -56,8 +61,10 @@ const Form = () => {
             setFormLoader(true);
             if(currentID){
                 await dispatch(updatePost(currentID, {...postData, name: user?.result?.name}));
+                setShow(false);
                 clear();
-            }else if(postData.selectedFile){
+            }
+            else if(postData.selectedFile){
             await dispatch(createPost({...postData, name: user?.result?.name}, navigate));
             clear();
             }else{
@@ -65,7 +72,7 @@ const Form = () => {
             }
     
         }catch(err){
-            console.log(err.response.data.message);
+           
             setFormLoader(false);
             setIsError(true);
             setPostError(err.response.data.message);

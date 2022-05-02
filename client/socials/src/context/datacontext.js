@@ -7,7 +7,6 @@ const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
     const dispatch = useDispatch();
-    const currentID = useSelector(state => state.id);
     const[loading, setLoading] = useState(true);
     const [getError, setGetError] = useState(false);
     const[GetErrorMessage, setGetErrorMessage] = useState("");
@@ -37,9 +36,10 @@ export const DataProvider = ({ children }) => {
         SearchCheck = data.filter((post) => (post.title.toLowerCase()) === (searchValue.toLowerCase()))
       }
       if(tagValue !== ""){
-        const tags = tagValue.split(" ");
+        
+        const tags = tagValue.toLowerCase().trim().split(" ");
         TagCheck = data.filter((post) => 
-      post.tags.some(item => tags.includes(item)));
+      post.tags.some(item => tags.includes((item.toLowerCase()))));
       }
       stateChanger([...SearchCheck, ...TagCheck]);
     if(navigate) return  navigate(`/search/${searchValue}${tagValue}`);
@@ -47,9 +47,9 @@ export const DataProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   
 const handleRecommendedTagSearch =(value, stateChanger) => {
-  const tags = value.split(" ");
+  const tags = value.toLowerCase().trim().split(" ");
   let check = data.filter((post) => 
-post.tags.some(item => tags.includes(item)));
+post.tags.some(item => tags.includes((item.toLowerCase()))));
 stateChanger(check);
 
 

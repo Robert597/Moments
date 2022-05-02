@@ -18,7 +18,7 @@ let navigate = useNavigate();
   if(loading) return (<Loading/>)
  if(getError) return (<div className='errorCont'><p>{GetErrorMessage}</p>
  <button onClick={() => navigate(0)}>Reload</button>
- </div>)
+ </div>);
 
  return ( 
    !loading && (
@@ -34,7 +34,7 @@ let navigate = useNavigate();
   
     <div className='contentDissapear'>
         <Search />
-        <Form/>
+        <Form setShow={setShow}/>
         </div>
         <div className='navIconContainer'>
           <div className='searchIconContainer' onClick={() => setShow(show ? false : true)}>

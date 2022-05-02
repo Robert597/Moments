@@ -33,11 +33,15 @@
     margin-bottom: 5px;
 }
 .detailscardtags{
-    color: lightgray;
+    color: rgb(161, 152, 152);
     font-family: newYork;
     font-size: 16px;
-    overflow: hidden;
     font-weight: bold;
+    white-space: pre-wrap;     
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap;    
+    white-space: -o-pre-wrap;  
+    word-wrap: break-word;   
 }
 .detailscardContent{
     font-family: neutral;

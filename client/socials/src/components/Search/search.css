@@ -15,6 +15,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    text-transform: capitalize;
 }
 .tagMainPostContainer{
     width: 300px;
