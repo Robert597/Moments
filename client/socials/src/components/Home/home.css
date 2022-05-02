@@ -107,6 +107,18 @@
     display: none;
     width: 100%;
 }
+.errorCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.errorCont p{
+    color: red;
+    font-size: 16px;
+    font-family: neutral;
+}
 @media all and (max-width: 1009px){
    .hide .homeContentside{
         width: 50px;

@@ -2,14 +2,19 @@ import * as api from '../api';
 import * as actions from '../constants/actionType';
 
 //Action creators
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (loader, errorState, errorMessage) => async (dispatch) => {
     try{
+        loader(true);
         const { data } = await api.fetchPosts();
         dispatch({
             type: actions.get, payload: data
         })
     }catch (err) {
-        console.log(err.message);
+        loader(false);
+        errorMessage(err.response.data.message);
+        errorState(true);
+    }finally{
+        loader(false);
     }
     
 }

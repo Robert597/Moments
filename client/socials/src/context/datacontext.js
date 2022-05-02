@@ -8,12 +8,14 @@ const DataContext = createContext({});
 export const DataProvider = ({ children }) => {
     const dispatch = useDispatch();
     const currentID = useSelector(state => state.id);
-    
+    const[loading, setLoading] = useState(true);
+    const [getError, setGetError] = useState(false);
+    const[GetErrorMessage, setGetErrorMessage] = useState("");
     useEffect(() => {
-     dispatch(getPosts());
+     dispatch(getPosts(setLoading, setGetError, setGetErrorMessage));
     }, [currentID, dispatch])
 
-const[loading, setLoading] = useState(true);
+
 
     const data = useSelector((state) => state.posts);
     
@@ -24,9 +26,6 @@ const[loading, setLoading] = useState(true);
 
     useEffect(() => {
     setFilterData(data);
-    if(data.length){
-      setLoading(false);
-    }
     }, [data])
     
 
@@ -58,7 +57,7 @@ stateChanger(check);
 
 }
     return (
-        <DataContext.Provider value={{searchTags, searchValue, setSearchValue, setSearchTags, filterData, handleTagSearch, tagData, setTagData, handleRecommendedTagSearch, user, setUser, loading, setLoading}}>
+        <DataContext.Provider value={{searchTags, searchValue, setSearchValue, setSearchTags, filterData, handleTagSearch, tagData, setTagData, handleRecommendedTagSearch, user, setUser, loading, setLoading, getError, GetErrorMessage}}>
             {children}
         </DataContext.Provider>
     )

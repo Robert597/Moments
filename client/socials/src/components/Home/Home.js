@@ -12,11 +12,11 @@ import Loading from '../rotateLoader/loading';
 
 const Home = () => {
   const[show, setShow] = useState(false);
-  const {loading} = useContext(DataContext);
+  const {loading, getError,  GetErrorMessage} = useContext(DataContext);
 
   
   if(loading) return (<Loading/>)
- 
+ if(getError) return (<div className='errorCont'><p>{GetErrorMessage}</p></div>)
 
  return ( 
    !loading && (
