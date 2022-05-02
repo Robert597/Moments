@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
     const[GetErrorMessage, setGetErrorMessage] = useState("");
     useEffect(() => {
      dispatch(getPosts(setLoading, setGetError, setGetErrorMessage));
-    }, [currentID, dispatch])
+    }, [ dispatch])
 
 
 

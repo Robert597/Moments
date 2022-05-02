@@ -117,6 +117,7 @@ const Form = () => {
             </div>
            {isError && (<p className='postError'>{postError}</p>)}
             <button className="postSubmitBtn" type='submit'>Submit</button>
+            <button className="postClearBtn" type='submit' onClick={() => clear()}>Clear</button>
         </form>
     </div>
   )
