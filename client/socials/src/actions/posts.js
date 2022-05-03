@@ -11,14 +11,14 @@ export const getPosts = (loader, errorState, errorMessage) => async (dispatch) =
         })
     }catch (err) {
         loader(false);
-        errorMessage(err.response.data.message);
+        errorMessage(err.message);
         errorState(true);
     }finally{
         loader(false);
     }
     
 }
-export const createPost = ( post, navigate) => async (dispatch) => {
+export const createPost = ( post, navigate, formLoader, setError, errormessage) => async (dispatch) => {
     try{
         const {data} = await api.createPost(post);
        navigate(`/postDetails/${data._id}`);
@@ -27,10 +27,13 @@ export const createPost = ( post, navigate) => async (dispatch) => {
             payload: data
         })
     }catch(err){
+        formLoader(false);
+        setError(true);
+        errormessage(err.message);
         console.log(err.message);
     }
 }
-export const updatePost = (id, post) => async (dispatch) => {
+export const updatePost = (id, post, formLoader, setError, errormessage) => async (dispatch) => {
     try{
         const { data } = await api.updatePost(id, post);
 
@@ -39,6 +42,9 @@ export const updatePost = (id, post) => async (dispatch) => {
             payload: data
         })
     }catch(err){
+        formLoader(false);
+        setError(true);
+        errormessage(err.message);
         console.log(err);
     }
 }
