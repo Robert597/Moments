@@ -11,8 +11,8 @@ export const DataProvider = ({ children }) => {
     const [getError, setGetError] = useState(false);
     const[GetErrorMessage, setGetErrorMessage] = useState("");
     useEffect(() => {
-     dispatch(getPosts(setLoading, setGetError, setGetErrorMessage));
-    }, [ dispatch])
+    dispatch(getPosts(setLoading, setGetError, setGetErrorMessage));
+    }, [ dispatch]);
 
 
 

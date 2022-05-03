@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
 import { useSelector } from 'react-redux';
@@ -8,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import {RiLoader3Fill} from 'react-icons/ri'; 
 import "./form.css";
 import gsap from 'gsap';
+import { getDownloadURL, ref,  uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 
 const Form = ({setShow}) => {
@@ -20,9 +21,19 @@ const Form = ({setShow}) => {
         tags: '',
         selectedFile: ''
     });
+    const [imageFile, setImageFile] = useState({});
     const[formLoader, setFormLoader] = useState(false);
     const [postError, setPostError] = useState("");
     const [isError, setIsError] = useState(false);
+    
+    
+    useEffect(() => {
+    if(post) setPostData(post);
+    }, [post])
+    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    
     useEffect(() => {
         let tl = gsap.timeline({paused: true});
         tl.to(".loaderIcon", {
@@ -47,25 +58,55 @@ const Form = ({setShow}) => {
             duration: .5
         });
     }
-    }, [formLoader])
-    
-    useEffect(() => {
-    if(post) setPostData(post);
-    }, [post])
-    
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    }, [formLoader]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
-            setFormLoader(true);
+       
+    try{
+        setFormLoader(true);
             if(currentID){
-                await dispatch(updatePost(currentID, {...postData, name: user?.result?.name}));
-                setShow(false);
-                clear();
-            }else if(postData.selectedFile){
-            await dispatch(createPost({...postData, name: user?.result?.name}, navigate));
-            clear();
+                if(!imageFile.name) {
+                    
+                    await dispatch(updatePost(currentID, {...postData, name: user?.result?.name}))
+                    setImageFile({});
+                    setFormLoader(false);
+                    setShow(false);
+                    clear();
+                }else{
+                   
+                    const storageRef = ref(storage, `/files/${imageFile.name}`);
+                    const uploadTask = uploadBytesResumable(storageRef, imageFile);
+
+                    uploadTask.on("state_changed", (snapshot) => {
+                        return snapshot;
+                    }, (error) => {
+                     return error;
+                   },() => {
+                        getDownloadURL(uploadTask.snapshot.ref).then(url =>   dispatch(updatePost(currentID, {...postData, selectedFile: url, name: user?.result?.name}))).then(() => {
+                            setImageFile({});
+                            setFormLoader(false);
+                            setShow(false);
+                            
+                            clear();
+                        });
+                    })
+                }
+            }else if(imageFile.name){
+                const storageRef = ref(storage, `/files/${imageFile.name}`);
+                const uploadTask = uploadBytesResumable(storageRef, imageFile);
+               uploadTask.on("state_changed",(snapshot) => {
+                   return snapshot;
+               }, (error) => {
+                console.log(error);
+              }, () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(url => dispatch(createPost({...postData, selectedFile: url, name: user?.result?.name}, navigate))).then(() => {
+                        setImageFile({});
+                        clear();
+                        setFormLoader(false);
+                    });
+                })
+               
             }else{
                 alert("add image")
             }
@@ -73,10 +114,7 @@ const Form = ({setShow}) => {
         }catch(err){
             setFormLoader(false);
             setIsError(true);
-            setPostError(err.response.data.message);
-        }finally{
-            setFormLoader(false);
-            setIsError(false);
+           setPostError(err.response.data.message);
         }
  }
     const clear = () => {
@@ -89,6 +127,8 @@ const Form = ({setShow}) => {
         });
     };
 
+
+
     if(!user?.result?.name){
         return (
             <div className='unable'>
@@ -100,7 +140,8 @@ const Form = ({setShow}) => {
     }
   return (
     <div className='postFormContainer'>
-        <form autoComplete='off' noValidate className='postformContainer' onSubmit={(e) => handleSubmit(e)}>
+        <form autoComplete='off' noValidate className='postformContainer' onSubmit={(e) => {
+           handleSubmit(e)}}>
             <h1> { currentID ? "Editing" : "Creating"} a Memory </h1>
             <div className='postFormTitle'>
             <input name='title'value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} placeholder=" "/>
@@ -116,9 +157,7 @@ const Form = ({setShow}) => {
             <label htmlFor="tags" className='postLabel'>tags(comma Seperated)</label>
             </div>
             <div className='formImageUpload'>
-                 <FileBase type="file" multiple={false} 
-                onDone={({base64}) => setPostData({...postData, selectedFile: base64})}
-                 />
+                <input type="file" onChange={(e) => setImageFile(e.target.files[0])}/>
             </div>
            {isError && (<p className='postError'>{postError}</p>)}
             <button className="postSubmitBtn" type='submit'>Submit</button>

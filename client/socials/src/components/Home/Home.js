@@ -21,7 +21,8 @@ let navigate = useNavigate();
  </div>);
 
  return ( 
-   !loading && (
+
+  !loading && (
     <div className={show ? 'homeContainer show' : 'homeContainer hide'}>
     <div className='homeNavbar'>
       <Navbar/>

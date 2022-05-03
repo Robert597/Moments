@@ -29,7 +29,6 @@ const navigate = useNavigate();
 
 
 const posts =  data.slice(offset, offset + PER_PAGE)
-console.log(posts);
 const pageCount = Math.ceil(data.length / PER_PAGE);
     
   return (

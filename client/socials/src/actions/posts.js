@@ -18,10 +18,10 @@ export const getPosts = (loader, errorState, errorMessage) => async (dispatch) =
     }
     
 }
-export const createPost = (post, navigate) => async (dispatch) => {
+export const createPost = ( post, navigate) => async (dispatch) => {
     try{
         const {data} = await api.createPost(post);
-        navigate(`/postDetails/${data._id}`);
+       navigate(`/postDetails/${data._id}`);
         dispatch({
             type: actions.create,
             payload: data
