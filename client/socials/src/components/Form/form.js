@@ -62,60 +62,41 @@ const Form = ({setShow}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormLoader(true);
+        try{
+            setFormLoader(true);
             if(currentID){
                 if(!imageFile.name) {
-                    
-                     dispatch(updatePost(currentID, {...postData, name: user?.result?.name}, setFormLoader, setIsError,  setPostError)).then(() => {
-                        setImageFile({});
-                        setFormLoader(false);
-                        setShow(false);
-                        clear();
-                     })
-                   
-                }else{
-                   
-                    const storageRef = ref(storage, `/files/${imageFile.name}`);
-                    const uploadTask = uploadBytesResumable(storageRef, imageFile);
-
-                    uploadTask.on("state_changed", (snapshot) => {
-                        return snapshot;
-                    }, (error) => {
-                        setFormLoader(false);
-                        setIsError(true);
-                        setPostError(error.message);
-                   },() => {
-                        getDownloadURL(uploadTask.snapshot.ref).then(url =>   dispatch(updatePost(currentID, {...postData, selectedFile: url, name: user?.result?.name}, setFormLoader, setIsError,  setPostError))).then(() => {
-                            setImageFile({});
-                            setFormLoader(false);
-                            setShow(false);
-                            
-                            clear();
-                        });
-                    })
-                }
+             await dispatch(updatePost(currentID, {...postData, name: user?.result?.name}, setFormLoader, setIsError,  setPostError));
+             setImageFile({});
+         setShow(false);
+        clear();
+     }else{
+     const storageRef = ref(storage, `/files/${imageFile.name}`);
+     const uploadTask = await uploadBytesResumable(storageRef, imageFile);
+     const url = await getDownloadURL(storageRef);
+await  dispatch(updatePost(currentID, {...postData, selectedFile: url, name: user?.result?.name}, setFormLoader, setIsError,  setPostError));
+setImageFile({});
+setShow(false);
+clear();
+     }
             }else if(imageFile.name){
                 const storageRef = ref(storage, `/files/${imageFile.name}`);
-                const uploadTask = uploadBytesResumable(storageRef, imageFile);
-               
-                   uploadTask.on("state_changed",(snapshot) => {
-                   return snapshot;
-               }, (error) => {
-                setFormLoader(false);
-                setIsError(true);
-                setPostError(error.message);
-                console.log(error);
-              }, () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then(url => dispatch(createPost({...postData, selectedFile: url, name: user?.result?.name}, navigate, setFormLoader, setIsError, setPostError))).then(() => {
-                        setImageFile({});
-                        clear();
-                        setFormLoader(false);
-                    });
-                })
-               
-            }else{
+                const uploadTask = await uploadBytesResumable(storageRef, imageFile);
+                const url = await getDownloadURL(storageRef);
+                await dispatch(createPost({...postData, selectedFile: url, name: user?.result?.name}, navigate, setFormLoader, setIsError, setPostError))
+                setImageFile({});
+                clear();
+             }else{
                 alert("add image")
             }
+        }catch(err) {
+            setFormLoader(false);
+            setIsError(true);
+            setPostError(err.message);
+        }finally{
+            setFormLoader(false);
+        }
+      
     
         
  }

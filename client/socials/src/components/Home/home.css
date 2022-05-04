@@ -123,8 +123,9 @@
 .errorCont button{
     font-size: 16px;
     font-family: neutral;
-    background-color: #3a6ea5;
+    background-color: transparent;
     padding: 15px;
+    cursor: pointer;
 }
 @media all and (max-width: 1009px){
    .hide .homeContentside{
